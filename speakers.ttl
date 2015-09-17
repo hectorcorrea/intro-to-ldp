@@ -1,7 +1,4 @@
-@prefix ldp: <http://www.w3.org/ns/ldp#>.
-@prefix xx: <http://myfakeontology.org/>.
-
 <> <http://purl.org/dc/elements/1.1/title> "Speakers at Hydra Connect 2015".
-<> a ldp:DirectContainer .
-<> ldp:membershipResource </fedora/rest/hydraconnect2015> .
-<> ldp:hasMemberRelation xx:hasSpeaker .
+<> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/ldp#DirectContainer> .
+<> <http://www.w3.org/ns/ldp#hasMemberRelation> <http://myfakeontology.org/hasSpeaker> .
+<> <http://www.w3.org/ns/ldp#membershipResource> </fedora/rest/hydraconnect2015> .
