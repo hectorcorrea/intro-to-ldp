@@ -14,15 +14,19 @@
 #   3. Update file speakers.ttl to use the same ID that you use in ROOT_NODE.
 #
 LDP_SERVER="http://fedoraAdmin:fedoraAdmin@localhost:8983/fedora/rest"
-ROOT_NODE="${LDP_SERVER}/hydraconnect2015"
+ROOT_NODE="${LDP_SERVER}/demo100"
 
 
-# Create the root node
-curl -X PUT --data "@root.ttl" --header "Content-Type: text/turtle" ${ROOT_NODE}
+# Create the root node (/demoNNN)
+curl -X PUT ${ROOT_NODE}
+
+
+# Add an RDF Source with the conference information.
+curl -X POST --data "@conference.ttl" --header "Content-Type: text/turtle" --header "Slug: hydraconnect2015" ${ROOT_NODE}
 
 
 # Add an RDF Source with session1 information
-curl -X POST --data "@session1.ttl" --header "Content-Type: text/turtle" --header "Slug: session1" ${ROOT_NODE}
+curl -X POST --data "@session1.ttl" --header "Content-Type: text/turtle" --header "Slug: session1" ${ROOT_NODE}/hydraconnect2015
 
 
 # Declare a Direct Container for "speakers"
@@ -42,15 +46,15 @@ curl -X POST --data-binary "@thumbnail.jpg" --header "Slug: thumbnail.jpg" ${ROO
 # to /fedora/rest/hdyraconnect2015 you should have the following
 # URLs:
 #
-#     /fedora/rest/hydraconnect2015
-#     /fedora/rest/hydraconnect2015/session1
-#     /fedora/rest/hydraconnect2015/speakers
-#     /fedora/rest/hydraconnect2015/speakers/janedev
+#     /fedora/rest/demo01/hydraconnect2015
+#     /fedora/rest/demo01/hydraconnect2015/session1
+#     /fedora/rest/demo01/speakers
+#     /fedora/rest/demo01/speakers/janedev
 #
-# Notice that /fedora/rest/hydraconnect2015 has two triples with
-# ldp:contains predicate pointing to session1 and speakers.
+# Notice that /fedora/rest/demo01/hydraconnect2015 has a triples with
+# ldp:contains predicate pointing to session1.
 #
 # Notice that it also has a triple with predicate hasSpeaker
-# pointing to speakers/janedev
+# pointing to /fedora/rest/speakers/janedev
 
 
