@@ -43,7 +43,7 @@ curl -X POST --data-binary "@thumbnail.jpg" --header "Slug: thumbnail.jpg" ${ROO
 
 # Once you have run this script then you can browse to your
 # ROOT_NODE and see the results. Assuming your ROOT_NODE points
-# to /fedora/rest/hdyraconnect2015 you should have the following
+# to /fedora/rest/demo01 you should have the following
 # URLs:
 #
 #     /fedora/rest/demo01/hydraconnect2015
@@ -55,6 +55,6 @@ curl -X POST --data-binary "@thumbnail.jpg" --header "Slug: thumbnail.jpg" ${ROO
 # ldp:contains predicate pointing to session1.
 #
 # Notice that it also has a triple with predicate hasSpeaker
-# pointing to /fedora/rest/speakers/janedev
+# pointing to /fedora/rest/demo01/speakers/janedev
 
 
