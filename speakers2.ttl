@@ -1,4 +1,4 @@
 <> <http://purl.org/dc/elements/1.1/title> "Speakers at Hydra Connect 2015".
 <> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/ldp#DirectContainer> .
 <> <http://www.w3.org/ns/ldp#hasMemberRelation> <http://myfakeontology.org/hasSpeaker> .
-<> <http://www.w3.org/ns/ldp#membershipResource> <http://localhost:9001/hydraconnect2015> .
+<> <http://www.w3.org/ns/ldp#membershipResource> <http://localhost:9001/demo100/hydraconnect2015> .

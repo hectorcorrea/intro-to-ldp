@@ -10,27 +10,29 @@
 #   1. Make sure the LDP_SERVER variable points to your root path.
 #      By default this will be http://localhost:9001
 #
-#   2. Update the ROOT_ID to an ID that you have never used before.
+#   2. Update the ROOT_NODE to an ID that you have never used before.
 #
-#   3. Update file speakers.ttl to use the same ID that you use in ROOT_ID.
+#   3. Update file speakers2.ttl to use the same ID that you use in ROOT_NODE.
 #
 LDP_SERVER="http://localhost:9001"
-ROOT_ID="hydraconnect2015"
-ROOT_NODE="${LDP_SERVER}/${ROOT_ID}"
+ROOT_NODE="${LDP_SERVER}/demo100"
 
 
-# Create the root node (TODO: support PUT)
-curl -X POST --data "@root.ttl" --header "Slug: ${ROOT_ID}" --header "Content-Type: text/turtle" ${LDP_SERVER}
+# Create the root node (/demoNNN)
+curl -X PUT ${ROOT_NODE}
+
+# Add an RDF Source with the conference information.
+curl -X POST --data "@conference.ttl" --header "Content-Type: text/turtle" --header "Slug: hydraconnect2015" ${ROOT_NODE}
 
 
 # Add an RDF Source with session1 information
-curl -X POST --data "@session1.ttl" --header "Content-Type: text/turtle" --header "Slug: session1" ${ROOT_NODE}
+curl -X POST --data "@session1.ttl" --header "Content-Type: text/turtle" --header "Slug: session1" ${ROOT_NODE}/hydraconnect2015
 
 
 # Declare a Direct Container for "speakers" (TODO: Remove PATCH calls)
 curl -X POST --data "@speakers2.ttl" --header "Content-Type: text/turtle" --header "Slug: speakers" ${ROOT_NODE}
 curl -X PATCH -d "<> <http://www.w3.org/ns/ldp#hasMemberRelation> <http://myfakeontology.org/hasSpeaker> ." ${ROOT_NODE}/speakers
-curl -X PATCH -d "<> <http://www.w3.org/ns/ldp#membershipResource> <${ROOT_NODE}> ." ${ROOT_NODE}/speakers
+curl -X PATCH -d "<> <http://www.w3.org/ns/ldp#membershipResource> <${ROOT_NODE}/hydraconnect2015> ." ${ROOT_NODE}/speakers
 
 
 # Add a new speaker
